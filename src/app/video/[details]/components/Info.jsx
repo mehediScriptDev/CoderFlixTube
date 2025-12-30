@@ -1,20 +1,20 @@
 import React from 'react';
 
-const Info = () => {
+const Info = ({ video }) => {
     return (
         <div className="mt-4">
               <h1
                 id="videoTitle"
                 className="text-lg sm:text-xl font-medium leading-snug"
               >
-                OpenAI and Google Shocked by the First EVER Open Source AI Agent
+                {video?.videoTitle}
               </h1>
 
               <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div id="videoMeta" className="text-sm text-gray-400">
-                  <span id="viewCount">101K views</span>
+                  <span id="viewCount">{video?.views}</span>
                   <span className="mx-1">•</span>
-                  <span id="publishTime">3 months ago</span>
+                  <span id="publishTime">{video?.publishedDate}</span>
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -47,7 +47,7 @@ const Info = () => {
                         id="likeCount"
                         className="text-sm font-medium text-[#e5e5e5]"
                       >
-                        6.8K
+                        {video?.likes ?? "0"}
                       </span>
                     </button>
                     <div className="w-px h-8 bg-[#303030]"></div>
@@ -79,7 +79,7 @@ const Info = () => {
                         id="dislikeCount"
                         className="text-sm font-medium text-[#e5e5e5]"
                       >
-                        110
+                        {video?.dislikes ?? "0"}
                       </span>
                     </button>
                   </div>
@@ -91,8 +91,8 @@ const Info = () => {
                 <div className="flex items-center gap-3 min-w-0">
                   <img
                     id="channelAvatar"
-                    src="https://yt3.ggpht.com/XRZC_XqZoSUtB_Zo9R0w2vDRqGqVv0lKZTRYI6b-7DPKi32MtByVhxgIokLAguhf7fw__K8o3g"
-                    alt="GreatStack avatar"
+                    src={video?.channelAvatar}
+                    alt={`${video?.channelName} avatar`}
                     className="w-10 h-10 rounded-full object-cover bg-[#262626] ring-1 ring-white/10 flex-shrink-0"
                     loading="lazy"
                   />
@@ -101,7 +101,7 @@ const Info = () => {
                       id="channelTitle"
                       className="font-medium leading-tight truncate"
                     >
-                      GreatStack
+                      {video?.channelName}
                     </p>
                     <p className="text-xs text-gray-400">Publisher</p>
                   </div>
@@ -115,7 +115,7 @@ const Info = () => {
                     id="videoDescription"
                     className="text-sm text-gray-200 whitespace-pre-line line-clamp-3"
                   >
-                    Categories: AI • Open Source • Agents • Technology
+                    {video?.description || `Categories: ${video?.categories?.join(' • ')}`}
                   </p>
                   <button
                     id="toggleDescription"
